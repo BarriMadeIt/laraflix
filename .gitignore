@@ -1,5 +1,7 @@
 #exclude
 /mariadb/*
+/node/src/node_modules
+/node/src/.vscode
 /src/node_modules
 /src/public/hot
 /src/public/storage
