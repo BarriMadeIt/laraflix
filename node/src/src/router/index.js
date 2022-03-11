@@ -1,13 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import AdminDashboard from '../views/admin/AdminDashboard.vue'
+import RegisterUser from '../views/RegisterUser.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: HomeView
+      path: '/admin/dashboard',
+      name: 'AdminDashboard',
+      component: AdminDashboard
+    },
+    {
+      path: '/register',
+      name: 'registerUser',
+      component: RegisterUser
     },
     {
       path: '/about',
