@@ -53,3 +53,18 @@ services:
       - laraflix-api
     networks:
       - laraflix-net
+    
+  npm:
+    build:
+      context: ./node
+      dockerfile: npm.Dockerfile
+    container_name: npm
+    ports:
+      - '3000:3000'
+    volumes:
+      - './node/src:/app'
+    depends_on:
+      - laraflix-db
+      - laraflix-api
+    networks:
+      - laraflix-net
