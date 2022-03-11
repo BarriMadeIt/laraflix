@@ -1,4 +1,4 @@
-version: '2'
+version: '3.8'
 
 networks:
   laraflix-net:
@@ -19,6 +19,7 @@ services:
       - laraflix-net
     ports:
       - 3306:3306
+      
   laraflix-api:
     image: docker.io/bitnami/laravel:8
     container_name: laraflix-api
@@ -26,7 +27,7 @@ services:
     ports:
       - '8000:8000'
     environment:
-      - DB_HOST=mariadb
+      - DB_HOST=laraflix-db
       - DB_PORT=3306
       - DB_USERNAME=laraflix
       - DB_PASSWORD=secret
@@ -35,5 +36,20 @@ services:
       - './src:/app'
     depends_on:
       - laraflix-db
+    networks:
+      - laraflix-net
+
+  laraflix-frontend:
+    build:
+      context: ./node
+      dockerfile: node.Dockerfile
+    container_name: laraflix-frontend
+    ports:
+      - '8080:80'
+    volumes:
+      - './src:/app'
+    depends_on:
+      - laraflix-db
+      - laraflix-api
     networks:
       - laraflix-net
